@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:addbook="clr-namespace:StatisticsWpfApp.AddBook"
+             x:Class="StatisticsWpfApp.AddBook.AddBookPage">
+    <!--<ContentPage.BindingContext>
+        <addbook:AddBookViewModel/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Dodanie nowej książki"/>
+            <Label Text="Tytuł"/>
+            <Entry Text="{Binding Title}"/>
+            <Label Text="Kod:"/>
+            <Entry Text="{Binding BarCode}"/>
+            <Button Text="Wczytaj kod" Command="{Binding GetCodeGommand}"/>
+            <Label Text="Strona od:"/>
+            <Entry Keyboard="Numeric" Text="{Binding PageFrom}"/>
+            <Label Text="Strona do:"/>
+            <Entry Keyboard="Numeric" Text="{Binding PageTo}"/>
+            <Button Text="Dodaj" Command="{Binding AddBookCommand}"/>
+            <Button Text="Anuluj" Command="{Binding CancelBookCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
