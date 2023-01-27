@@ -23,6 +23,9 @@
                                     <Label Text="{Binding PageFrom}"/>
                                     <Label Text="Strona do:"/>
                                     <Label Text="{Binding PageTo}"/>
+                                    <Label Text="Ilość zdjęć:"/>
+                                    <Label Text="{Binding ImageCount}"/>
+                                    <Button Text="Edytuj" Command="{Binding Source={x:Reference Page}, Path=BindingContext.EditCopyBookCommand}" CommandParameter="{Binding Id}"/>
                                     <Button Text="Usuń" Command="{Binding Source={x:Reference Page}, Path=BindingContext.DeleteCopyBookCommand}" CommandParameter="{Binding Id}"/>
                                 </StackLayout>
                             </StackLayout>

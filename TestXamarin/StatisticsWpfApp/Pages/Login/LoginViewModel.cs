@@ -1,5 +1,4 @@
-﻿using StatisticsWpfApp.Database.Context;
-using StatisticsWpfApp.MainStatistic;
+﻿using StatisticsWpfApp.MainStatistic;
 using StatisticsWpfApp.MobileDatabaseServices;
 using System;
 using System.Collections.Generic;
@@ -55,11 +54,11 @@ namespace StatisticsWpfApp.Pages.Login
                         async o =>
                         {
                             //DatabaseContext databaseContext = new DatabaseContext();
-                            MobileDatabaseService mobileDatabaseService = new MobileDatabaseService();
-                            var dd = mobileDatabaseService.DatabaseService.DatabaseContext.Users.ToList();
-                            if (mobileDatabaseService.DatabaseService.DatabaseContext.Users.Any(u => u.Login == Login && u.Password == Password))
+                            //MobileDatabaseService mobileDatabaseService = new MobileDatabaseService();
+                            var dd = MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.Users.ToList();
+                            if (MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.Users.Any(u => u.Login == Login && u.Password == Password))
                             {
-                                int userId = mobileDatabaseService.DatabaseService.DatabaseContext.Users.FirstOrDefault(u => u.Login == Login).Id;
+                                int userId = MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.Users.FirstOrDefault(u => u.Login == Login).Id;
                                 await Application.Current.MainPage.Navigation.PushAsync(new MainStatisticPage(userId));
                                 //ErrorMessage = "Ok";
                             }

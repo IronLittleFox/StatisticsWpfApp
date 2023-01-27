@@ -7,14 +7,22 @@ using Xamarin.Essentials;
 
 namespace StatisticsWpfApp.MobileDatabaseServices
 {
-    public class MobileDatabaseService
+    public static class MobileDatabaseService
     {
-        public DatabaseService DatabaseService { get; set; }
+        //public DatabaseService DatabaseService { get; set; }
 
-        public MobileDatabaseService()
+        private static DatabaseService databaseServiceInstance;
+        public static DatabaseService DatabaseServiceInstance
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "database_2.db");
-            DatabaseService = new DatabaseService($"Filename={dbPath}");
+            get
+            {
+                if (databaseServiceInstance == null)
+                {
+                    string dbPath = Path.Combine(FileSystem.AppDataDirectory, "database_2.db");
+                    databaseServiceInstance = new DatabaseService($"Filename={dbPath}");
+                }
+                return databaseServiceInstance;
+            }
         }
     }
 }

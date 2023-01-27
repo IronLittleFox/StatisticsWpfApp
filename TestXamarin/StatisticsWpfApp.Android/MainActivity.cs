@@ -18,10 +18,11 @@ namespace StatisticsWpfApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
-            MobileDatabaseService databaseService = new MobileDatabaseService();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            //MobileDatabaseService databaseService = new MobileDatabaseService();
             try
             {
-                databaseService.DatabaseService.DatabaseContext.OwnMigrate();
+                MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.OwnMigrate();
             }
             catch (Exception)
             {

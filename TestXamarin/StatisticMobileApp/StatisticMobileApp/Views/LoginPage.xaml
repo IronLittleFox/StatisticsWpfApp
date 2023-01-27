@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors"
+             mc:Ignorable="d"
+             x:Class="StatisticMobileApp.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand">
+
+            <dxe:TextEdit LabelText="Login" 
+                          Text="{Binding Login}"/>
+            <dxe:PasswordEdit LabelText="Hasło" 
+                              Text="{Binding Password}"
+                              ClearIconVisibility="Always"/>
+            <dxe:SimpleButton Text="Login"
+                              Command="{Binding LoginCommand}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+            <Label Text="Register" HorizontalOptions="Center" Margin="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

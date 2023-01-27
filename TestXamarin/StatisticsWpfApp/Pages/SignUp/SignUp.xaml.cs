@@ -15,6 +15,13 @@ namespace StatisticsWpfApp.Pages.SignUp
         public SignUp()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using StatisticsWpfApp.Database.Context;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -54,19 +53,19 @@ namespace StatisticsWpfApp.Pages.SignUp
                         async o =>
                         {
                             //DatabaseContext databaseContext = new DatabaseContext();
-                            MobileDatabaseService mobileDatabaseService = new MobileDatabaseService();
-                            if (mobileDatabaseService.DatabaseService.DatabaseContext.Users.Any(u => u.Login == Login))
+                            //MobileDatabaseService mobileDatabaseService = new MobileDatabaseService();
+                            if (MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.Users.Any(u => u.Login == Login))
                             {
                                 ErrorMessage = "Już jest takie konto";
                             }
                             else
                             {
-                                mobileDatabaseService.DatabaseService.DatabaseContext.Users.Add(new User()
+                                MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.Users.Add(new User()
                                 {
                                     Login = Login,
                                     Password = Password
                                 });
-                                mobileDatabaseService.DatabaseService.DatabaseContext.SaveChanges();
+                                MobileDatabaseService.DatabaseServiceInstance.DatabaseContext.SaveChanges();
                                 await Application.Current.MainPage.Navigation.PushAsync(new Login.Login());
                             }
                         }

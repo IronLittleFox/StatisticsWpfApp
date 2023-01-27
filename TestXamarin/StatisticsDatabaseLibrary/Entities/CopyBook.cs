@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace StatisticsDatabaseLibrary.Entities
@@ -13,5 +14,6 @@ namespace StatisticsDatabaseLibrary.Entities
         public int PageTo { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public ObservableCollection<ScannedPhoto> ScannedPhotos { get; set; }
     }
 }

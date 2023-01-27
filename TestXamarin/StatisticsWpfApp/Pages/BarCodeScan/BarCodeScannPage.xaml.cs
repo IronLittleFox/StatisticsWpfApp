@@ -12,9 +12,17 @@ namespace StatisticsWpfApp.Pages.BarCodeScan
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BarCodeScannPage : ContentPage
     {
-        public BarCodeScannPage()
+        public BarCodeScannPage(BarCodeScannViewModel barCodeScannViewModel)
         {
+            BindingContext = barCodeScannViewModel;
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
     }
 }

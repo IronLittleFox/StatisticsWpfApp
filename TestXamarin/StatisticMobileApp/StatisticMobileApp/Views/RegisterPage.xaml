@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StatisticMobileApp.ViewModels"
+             x:Class="StatisticMobileApp.Views.RegisterPage"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+    <!--<ContentPage.BindingContext>
+        <viewmodels:RegisterViewModel/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand">
+            <Label Text="Rejestracja konta" FontSize="20" HorizontalOptions="Center"/>
+            <dxe:TextEdit LabelText="Login" 
+                          Text="{Binding Login}"/>
+            <dxe:PasswordEdit LabelText="Hasło" 
+                              Text="{Binding Password}"
+                              ClearIconVisibility="Always"/>
+            <dxe:SimpleButton Text="Zarejestruj"
+                              Command="{Binding RegisterCommand}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

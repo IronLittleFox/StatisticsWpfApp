@@ -1,4 +1,5 @@
-﻿using StatisticsWpfApp.Pages.Login;
+﻿using DLToolkit.Forms.Controls;
+using StatisticsWpfApp.Pages.Login;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,7 +11,7 @@ namespace StatisticsWpfApp
         public App()
         {
             InitializeComponent();
-
+            FlowListView.Init();
             MainPage = new NavigationPage(new Login());
         }
 

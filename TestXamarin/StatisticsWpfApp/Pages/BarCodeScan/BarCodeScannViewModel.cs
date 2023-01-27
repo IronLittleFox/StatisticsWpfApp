@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using ZXing;
 
 namespace StatisticsWpfApp.Pages.BarCodeScan
 {
-    class BarCodeScannViewModel : BindableObject
+    public class BarCodeScannViewModel : BindableObject
     {
+        public bool IsScanCodeOk { get; set; }
+
         private string _codeResult;
         public string CodeResult
         {
@@ -62,10 +65,28 @@ namespace StatisticsWpfApp.Pages.BarCodeScan
                     okCommand = new Command<object>(
                         async o =>
                         {
+                            IsScanCodeOk = true;
                             await Application.Current.MainPage.Navigation.PopAsync();
                         }
                         );
                 return okCommand;
+            }
+        }
+
+        private ICommand _cancelCommand;
+        public ICommand CancelCommand
+        {
+            get
+            {
+                if (_cancelCommand == null)
+                    _cancelCommand = new Command<object>(
+                        async o =>
+                        {
+                            IsScanCodeOk = false;
+                            await Application.Current.MainPage.Navigation.PopAsync();
+                        }
+                        );
+                return _cancelCommand;
             }
         }
     }

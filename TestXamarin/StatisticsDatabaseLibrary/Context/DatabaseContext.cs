@@ -35,5 +35,6 @@ namespace StatisticsDatabaseLibrary.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<CopyBook> CopyBooks { get; set; }
+        public DbSet<ScannedPhoto> ScannedPhotos { get; set; }
     }
 }

@@ -17,12 +17,19 @@ namespace StatisticsWpfApp.MainStatistic
             BindingContext = new MainStatisticViewModel(userId);
             
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         protected override void OnAppearing()
         {
             (BindingContext as MainStatisticViewModel).Refresh();
             base.OnAppearing();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
     }
 }
