@@ -58,6 +58,23 @@ namespace StatisticMobileApp.ViewModels
             }
         }
 
+        private ICommand _appearingCommand;
+        public ICommand AppearingCommand
+        {
+            get
+            {
+                if (_appearingCommand == null)
+                    _appearingCommand = new Command<object>(
+                        o =>
+                        {
+                            Login = "";
+                            Password = "";
+                        }
+                        );
+                return _appearingCommand;
+            }
+        }
+
         public RegisterViewModel(StatisticDatabaseServices statisticDatabaseServices)
         {
             this.statisticDatabaseServices = statisticDatabaseServices;

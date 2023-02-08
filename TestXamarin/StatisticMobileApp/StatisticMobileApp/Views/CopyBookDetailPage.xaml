@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="StatisticMobileApp.Views.CopyBookDetailPage"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors" 
+             x:Name="Page"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <behaviors:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Informacje o książce"/>
+            <!--<Label Text="Tytuł"/>
+            <Entry Text="{Binding BookTitle}"/>-->
+            <dxe:TextEdit LabelText="Tytuł" Text="{Binding BookTitle}"/>
+            <!--<Label Text="Kod:"/>
+            <Entry Text="{Binding BarCode}"/>-->
+            <dxe:TextEdit LabelText="Kod:" Text="{Binding BarCode}"/>
+            <Button Text="Wczytaj kod" Command="{Binding GetCodeCommand}"/>
+            <!--<Label Text="Strona od:"/>
+            <Entry Keyboard="Numeric" Text="{Binding PageFrom}"/>-->
+            <dxe:NumericEdit LabelText="Strona od:" 
+                             Value="{Binding PageFrom}"
+                             DisplayFormat="n0"
+                             AllowNullValue="true"
+                             StepValue="1"
+                             MinValue="1"
+                             TextHorizontalAlignment="Start"/>
+            <!--<Label Text="Strona do:"/>
+            <Entry Keyboard="Numeric" Text="{Binding PageTo}"/>-->
+            <dxe:NumericEdit LabelText="Strona do:" 
+                             Value="{Binding PageTo}"
+                             DisplayFormat="n0"
+                             AllowNullValue="true"
+                             StepValue="1"
+                             MinValue="1"
+                             TextHorizontalAlignment="Start"/>
+            <Label Text="Zdjęcie strony:"/>
+            <flv:FlowListView FlowColumnCount="3" 
+                              SeparatorVisibility="None" 
+                              HasUnevenRows="false"
+	                          FlowItemsSource="{Binding ImageGallery}" >
+
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <ffimageloading:CachedImage HeightRequest="200" Aspect="AspectFit"
+							DownsampleHeight="100" DownsampleUseDipUnits="false" 
+							Source="{Binding Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference Page}, Path=BindingContext.ScannedPhotoPreviewCommand}"
+                                                      CommandParameter="{Binding Photo}"/>
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+            <dxe:SimpleButton Text="Zrób zdjęcie"
+                              Command="{Binding TakePhotoCommand}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+            <dxe:SimpleButton Text="{Binding SaveCopyBookText}"
+                              Command="{Binding SaveCopyBookCommand}"
+                              IsVisible="{Binding SaveCopyBookVisible}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+            <dxe:SimpleButton Text="Anuluj"
+                              Command="{Binding CancelBookCommand}" 
+                              IsVisible="{Binding CancelBookVisible}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+            <dxe:SimpleButton Text="Zamknij"
+                              Command="{Binding CloseBookCommand}"
+                              IsVisible="{Binding CloseBookVisible}"
+                              CornerMode="Round"
+                              CornerRadius="15"
+                              />
+            <!--<Button Text="Zrób zdjęcie" Command="{Binding TakePhotoCommand}"/>
+            <Button Text="{Binding SaveCopyBookText}" Command="{Binding SaveCopyBookCommand}" IsVisible="{Binding SaveCopyBookVisible}"/>
+            <Button Text="Anuluj" Command="{Binding CancelBookCommand}" IsVisible="{Binding CancelBookVisible}"/>
+            <Button Text="Zamknij" Command="{Binding CloseBookCommand}" IsVisible="{Binding CloseBookVisible}"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

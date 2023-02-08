@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using StatisticMobileApp.Services;
+﻿using Autofac;
+//using Microsoft.Extensions.DependencyInjection;
 using StatisticMobileApp.ViewModels;
 using StatisticMobileApp.Views;
 using StatisticMobileDatabaseLibrary.Context;
@@ -14,22 +14,21 @@ namespace StatisticMobileApp
 {
     public partial class App : Application
     {
-        protected static IServiceProvider ServiceProvider { get; set; }
+        private static IContainer Container { get; set; }
 
         public App()
         {
             DevExpress.XamarinForms.Editors.Initializer.Init();
             DevExpress.XamarinForms.Popup.Initializer.Init();
+            DevExpress.XamarinForms.CollectionView.Initializer.Init();
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
 
             SetupServices();
             try
             {
-                ServiceProvider.GetService<StatisticDatabaseContext>().OwnMigrate();
+                Container.Resolve<StatisticDatabaseContext>().OwnMigrate();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -52,23 +51,33 @@ namespace StatisticMobileApp
 
         void SetupServices()
         {
-            var services = new ServiceCollection();
+            var builder = new ContainerBuilder();
 
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "StatisticMobileDatabase.db");
-            services.AddSingleton<StatisticDatabaseContext>(sdc => new StatisticDatabaseContext($"Filename={dbPath}"));
-            services.AddSingleton<StatisticDatabaseServices>();
+            //File.Delete(dbPath);
+            builder.RegisterType<StatisticDatabaseContext>().AsSelf().SingleInstance().WithParameter("sqlConnection", $"Filename={dbPath}");
 
-            // TODO: Add core services here
-            services.AddScoped<AppShellViewModel>();
-            services.AddScoped<LoginViewModel>();
-            services.AddScoped<RegisterViewModel>();
+            builder.RegisterType<StatisticDatabaseServices>().AsSelf();
 
-            ServiceProvider = services.BuildServiceProvider();
+            builder.RegisterType<AppShellViewModel>().AsSelf();
+            builder.RegisterType<LoginViewModel>().AsSelf();
+            builder.RegisterType<RegisterViewModel>().AsSelf();
+            builder.RegisterType<CopyBooksViewModel>().AsSelf();
+            builder.RegisterType<CopyBookDetailViewModel>().AsSelf();
+            builder.RegisterType<BarCodeScanViewModel>().AsSelf();
+            builder.RegisterType<PhotoPreviewViewModel>().AsSelf();
+
+            Container = builder.Build();
         }
 
-        public static BaseViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
+        public static TViewModel GetViewModel<TViewModel>() where TViewModel : BaseViewModel
         {
-            return ServiceProvider.GetService<TViewModel>();
+            return Container.Resolve<TViewModel>();
         }
+
+        //public static TViewModel GetViewModel<TViewModel>(int registeredUserId) where TViewModel : BaseViewModel
+        //{
+        //    return Container.Resolve<TViewModel>(new NamedParameter("registeredUserId", registeredUserId));
+        //}
     }
 }

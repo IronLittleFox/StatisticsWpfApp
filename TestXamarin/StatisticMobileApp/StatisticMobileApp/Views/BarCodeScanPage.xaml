@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StatisticMobileApp.Views.BarCodeScanPage"
+             xmlns:Zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Kod:"/>
+            <Label Text="{Binding BarCode}"/>
+            <Label Text="Typ kodu"/>
+            <Label Text="{Binding CodeType}"/>
+            <Zxing:ZXingScannerView IsScanning="True"
+                                        ScanResultCommand="{Binding ScanResultCommand}"/>
+            <Button Text="OK" Command="{Binding OkCommand}"/>
+            <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

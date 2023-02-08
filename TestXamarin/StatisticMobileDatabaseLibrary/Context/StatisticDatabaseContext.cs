@@ -6,11 +6,14 @@ using System.Text;
 
 namespace StatisticMobileDatabaseLibrary.Context
 {
+    //Add-Migration ChangeToNullableColumnsMigration -OutputDir Migrations  -Project StatisticMobileDatabaseLibrary -StartupProject StatisticDummyConsoleApp
     public class StatisticDatabaseContext : DbContext
     {
         private string sqlConnection;
 
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
+        public DbSet<CopyBook> CopyBooks { get; set; }
+        public DbSet<ScannedPhoto> ScannedPhotos { get; set; }
 
         public StatisticDatabaseContext()
         {

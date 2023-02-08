@@ -13,11 +13,10 @@ namespace StatisticMobileApp
             InitializeComponent();
             BindingContext = App.GetViewModel<AppShellViewModel>();
 
-            //Do skasowania
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-
             Routing.RegisterRoute(nameof(RegisterPage),typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(CopyBookDetailPage),typeof(CopyBookDetailPage));
+            Routing.RegisterRoute(nameof(BarCodeScanPage),typeof(BarCodeScanPage));
+            Routing.RegisterRoute(nameof(PhotoPreviewPage),typeof(PhotoPreviewPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

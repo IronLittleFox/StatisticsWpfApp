@@ -1,4 +1,5 @@
-﻿using StatisticMobileApp.Views;
+﻿using StatisticMobileApp.Parameters;
+using StatisticMobileApp.Views;
 using StatisticMobileDatabaseLibrary.DatabaseServices;
 using StatisticMobileDatabaseLibrary.Entities;
 using System;
@@ -47,7 +48,8 @@ namespace StatisticMobileApp.ViewModels
                             RegisteredUser registeredUser = statisticDatabaseServices.GetRegisteredUser(Login, Password);
                             if (registeredUser != null)
                             {
-                                await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                                AppParameters.ChangeParameter("RegisteredUserId", registeredUser.Id);
+                                await Shell.Current.GoToAsync($"//{nameof(CopyBooksPage)}");
                             }
                             else
                             {
@@ -72,6 +74,23 @@ namespace StatisticMobileApp.ViewModels
                         }
                         );
                 return _registerCommand;
+            }
+        }
+
+        private ICommand _appearingCommand;
+        public ICommand AppearingCommand
+        {
+            get
+            {
+                if (_appearingCommand == null)
+                    _appearingCommand = new Command<object>(
+                        o =>
+                        {
+                            Login = "";
+                            Password = "";
+                        }
+                        );
+                return _appearingCommand;
             }
         }
 

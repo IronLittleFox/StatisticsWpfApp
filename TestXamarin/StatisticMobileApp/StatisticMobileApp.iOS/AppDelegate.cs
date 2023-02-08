@@ -25,6 +25,9 @@ namespace StatisticMobileApp.iOS
             global::Xamarin.Forms.Forms.Init();
             DevExpress.XamarinForms.Editors.iOS.Initializer.Init();
             DevExpress.XamarinForms.Popup.iOS.Initializer.Init();
+            DevExpress.XamarinForms.CollectionView.iOS.Initializer.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

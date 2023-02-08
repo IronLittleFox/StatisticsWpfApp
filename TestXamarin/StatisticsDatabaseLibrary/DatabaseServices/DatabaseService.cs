@@ -1,6 +1,8 @@
 ﻿using StatisticsDatabaseLibrary.Context;
+using StatisticsDatabaseLibrary.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StatisticsDatabaseLibrary.DatabaseServices
@@ -17,6 +19,10 @@ namespace StatisticsDatabaseLibrary.DatabaseServices
             DatabaseContext = databaseContext;
         }
 
+        public IEnumerable<CopyBook> GetListOfCopyBooks(int userId)
+        {
+            return databaseContext.CopyBooks.Where(cb => cb.UserId == userId);
+        }
 
     }
 }
