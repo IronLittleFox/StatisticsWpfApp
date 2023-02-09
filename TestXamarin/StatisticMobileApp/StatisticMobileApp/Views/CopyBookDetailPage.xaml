@@ -20,15 +20,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Informacje o książce"/>
-            <!--<Label Text="Tytuł"/>
-            <Entry Text="{Binding BookTitle}"/>-->
             <dxe:TextEdit LabelText="Tytuł" Text="{Binding BookTitle}"/>
-            <!--<Label Text="Kod:"/>
-            <Entry Text="{Binding BarCode}"/>-->
             <dxe:TextEdit LabelText="Kod:" Text="{Binding BarCode}"/>
             <Button Text="Wczytaj kod" Command="{Binding GetCodeCommand}"/>
-            <!--<Label Text="Strona od:"/>
-            <Entry Keyboard="Numeric" Text="{Binding PageFrom}"/>-->
             <dxe:NumericEdit LabelText="Strona od:" 
                              Value="{Binding PageFrom}"
                              DisplayFormat="n0"
@@ -36,8 +30,6 @@
                              StepValue="1"
                              MinValue="1"
                              TextHorizontalAlignment="Start"/>
-            <!--<Label Text="Strona do:"/>
-            <Entry Keyboard="Numeric" Text="{Binding PageTo}"/>-->
             <dxe:NumericEdit LabelText="Strona do:" 
                              Value="{Binding PageTo}"
                              DisplayFormat="n0"
@@ -87,10 +79,6 @@
                               CornerMode="Round"
                               CornerRadius="15"
                               />
-            <!--<Button Text="Zrób zdjęcie" Command="{Binding TakePhotoCommand}"/>
-            <Button Text="{Binding SaveCopyBookText}" Command="{Binding SaveCopyBookCommand}" IsVisible="{Binding SaveCopyBookVisible}"/>
-            <Button Text="Anuluj" Command="{Binding CancelBookCommand}" IsVisible="{Binding CancelBookVisible}"/>
-            <Button Text="Zamknij" Command="{Binding CloseBookCommand}" IsVisible="{Binding CloseBookVisible}"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

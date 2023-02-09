@@ -6,6 +6,7 @@ using StatisticMobileDatabaseLibrary.Context;
 using StatisticMobileDatabaseLibrary.DatabaseServices;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 //using Xamarin.Forms.Xaml;
@@ -26,7 +27,7 @@ namespace StatisticMobileApp
             SetupServices();
             try
             {
-                Container.Resolve<StatisticDatabaseContext>().OwnMigrate();
+                //Container.Resolve<StatisticDatabaseContext>().OwnMigrate();
             }
             catch (Exception)
             {
@@ -37,8 +38,10 @@ namespace StatisticMobileApp
             MainPage = new AppShell();
         }
 
+
         protected override void OnStart()
         {
+
         }
 
         protected override void OnSleep()

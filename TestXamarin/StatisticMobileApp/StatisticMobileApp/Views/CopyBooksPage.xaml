@@ -42,12 +42,9 @@
                                                       CommandParameter="{Binding Id}"
                                                       CornerMode="Round"
                                                       CornerRadius="15"/>
-                                    <!--<Button Text="Edytuj" Command="{Binding Source={x:Reference Page}, Path=BindingContext.EditCopyBookCommand}" CommandParameter="{Binding Id}"/>
-                                    <Button Text="Usuń" Command="{Binding Source={x:Reference Page}, Path=BindingContext.DeleteCopyBookCommand}" CommandParameter="{Binding Id}"/>-->
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-
                     </DataTemplate>
                 </dxcv:DXCollectionView.ItemTemplate>
             </dxcv:DXCollectionView>
