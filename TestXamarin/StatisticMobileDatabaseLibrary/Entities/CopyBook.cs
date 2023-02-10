@@ -12,6 +12,8 @@ namespace StatisticMobileDatabaseLibrary.Entities
         public string BarCode { get; set; }
         public int? PageFrom { get; set; }
         public int? PageTo { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public RegisteredUser RegisteredUser { get; set; }
         public int RegisteredUserId { get; set; }
         public ObservableCollection<ScannedPhoto> ScannedPhotos { get; set; }

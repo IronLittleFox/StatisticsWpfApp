@@ -27,7 +27,7 @@ namespace StatisticMobileApp
             SetupServices();
             try
             {
-                //Container.Resolve<StatisticDatabaseContext>().OwnMigrate();
+                Container.Resolve<StatisticDatabaseContext>().OwnMigrate();
             }
             catch (Exception)
             {

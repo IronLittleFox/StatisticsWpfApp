@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StatisticMobileDatabaseLibrary.Context;
 
 namespace StatisticMobileDatabaseLibrary.Migrations
 {
     [DbContext(typeof(StatisticDatabaseContext))]
-    partial class StatisticDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230210145141_AddGPSColumnMigration")]
+    partial class AddGPSColumnMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

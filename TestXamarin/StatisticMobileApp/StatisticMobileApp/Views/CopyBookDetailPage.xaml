@@ -37,6 +37,36 @@
                              StepValue="1"
                              MinValue="1"
                              TextHorizontalAlignment="Start"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Szerokość:"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <Label Text="{Binding Latitude}"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <Label Text="Długość:"
+                       Grid.Column="1"
+                       Grid.Row="0"/>
+                <Label Text="{Binding Longitude}"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+                <dxe:SimpleButton Text="Odświerz lokalizację"
+                                  Command="{Binding GetGeoLocationCommand}"
+                                  CornerMode="Round"
+                                  CornerRadius="15"
+                                  Grid.Column="2"
+                                  Grid.Row="0"
+                                  Grid.RowSpan="2"/>
+            </Grid>
             <Label Text="Zdjęcie strony:"/>
             <flv:FlowListView FlowColumnCount="3" 
                               SeparatorVisibility="None" 
@@ -59,26 +89,22 @@
             <dxe:SimpleButton Text="Zrób zdjęcie"
                               Command="{Binding TakePhotoCommand}"
                               CornerMode="Round"
-                              CornerRadius="15"
-                              />
+                              CornerRadius="15"/>
             <dxe:SimpleButton Text="{Binding SaveCopyBookText}"
                               Command="{Binding SaveCopyBookCommand}"
                               IsVisible="{Binding SaveCopyBookVisible}"
                               CornerMode="Round"
-                              CornerRadius="15"
-                              />
+                              CornerRadius="15"/>
             <dxe:SimpleButton Text="Anuluj"
                               Command="{Binding CancelBookCommand}" 
                               IsVisible="{Binding CancelBookVisible}"
                               CornerMode="Round"
-                              CornerRadius="15"
-                              />
+                              CornerRadius="15"/>
             <dxe:SimpleButton Text="Zamknij"
                               Command="{Binding CloseBookCommand}"
                               IsVisible="{Binding CloseBookVisible}"
                               CornerMode="Round"
-                              CornerRadius="15"
-                              />
+                              CornerRadius="15"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

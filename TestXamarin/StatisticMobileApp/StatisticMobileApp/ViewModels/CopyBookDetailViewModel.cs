@@ -77,6 +77,26 @@ namespace StatisticMobileApp.ViewModels
             }
         }
 
+        public double Latitude
+        {
+            get { return copyBookModel.Latitude; }
+            set
+            {
+                copyBookModel.Latitude = value;
+                OnPropertyChanged(nameof(Latitude));
+            }
+        }
+
+        public double Longitude
+        {
+            get { return copyBookModel.Longitude; }
+            set
+            {
+                copyBookModel.Longitude = value;
+                OnPropertyChanged(nameof(Longitude));
+            }
+        }
+
         public ObservableCollection<ScannedPhoto> ImageGallery
         {
             get
@@ -273,6 +293,79 @@ namespace StatisticMobileApp.ViewModels
             }
         }
 
+
+        private ICommand getGeoLocationCommand;
+        public ICommand GetGeoLocationCommand
+        {
+            get
+            {
+                if (getGeoLocationCommand == null)
+                    getGeoLocationCommand = new Command<object>(
+                        async o =>
+                        {
+                            /*try
+                            {
+                                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                                if (location != null)
+                                {
+                                    Latitude = location.Latitude;
+                                    Longitude = location.Longitude;
+                                    
+                                }
+                            }
+                            catch (FeatureNotSupportedException fnsEx)
+                            {
+                                // Handle not supported on device exception
+                            }
+                            catch (FeatureNotEnabledException fneEx)
+                            {
+                                // Handle not enabled on device exception
+                            }
+                            catch (PermissionException pEx)
+                            {
+                                // Handle permission exception
+                            }
+                            catch (Exception ex)
+                            {
+                                // Unable to get location
+                            }*/
+
+                            try
+                            {
+                                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                                //cts = new CancellationTokenSource();
+                                var location = await Geolocation.GetLocationAsync(request/*, cts.Token*/);
+
+                                if (location != null)
+                                {
+                                    Latitude = location.Latitude;
+                                    Longitude = location.Longitude;
+
+                                }
+                            }
+                            catch (FeatureNotSupportedException fnsEx)
+                            {
+                                // Handle not supported on device exception
+                            }
+                            catch (FeatureNotEnabledException fneEx)
+                            {
+                                // Handle not enabled on device exception
+                            }
+                            catch (PermissionException pEx)
+                            {
+                                // Handle permission exception
+                            }
+                            catch (Exception ex)
+                            {
+                                // Unable to get location
+                            }
+                        }
+                        );
+                return getGeoLocationCommand;
+            }
+        }
+
         public CopyBookDetailViewModel(StatisticDatabaseServices statisticDatabaseServices)
         {
             this.statisticDatabaseServices = statisticDatabaseServices;
@@ -289,6 +382,7 @@ namespace StatisticMobileApp.ViewModels
                 SaveCopyBookVisible = true;
                 CancelBookVisible = true;
                 CloseBookVisible = false;
+                GetGeoLocationCommand.Execute(null);
             }
             else if (_copyBookDetailParameter.DetailStatus == DetailStatus.Edit)
             {
